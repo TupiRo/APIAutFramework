@@ -1,14 +1,15 @@
 import * as endpoints from '../support/endpoints'
+import EndpointManager from '../core/EndpointManager'
 
 describe('PET: CRUD TCs for Pet objet', () => {
     it('GET Pet by ID', () => {
+        currentURL = EndpointManager.getUrlById(endpoints.GET_PET_BY_ID, '11')
         cy.request({ 
             method : 'GET',
-            url : Cypress.env('BASE_URL') + endpoints.GET_PET_BY_ID
+            url : currentURL
         }).then((response) => {
             expect(response.status).to.eq(200)
             expect(response.body.name).to.eq('Cat 1')
-
         })
     })
 
