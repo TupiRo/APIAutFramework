@@ -1,61 +1,60 @@
 import * as endpointResources from '../support/endpoints'
 import endpointManager from '../core/EndpointManager'
 
-describe('PET: CRUD TCs for Pet objet', () => {
+describe('USER: CRUD TCs for user objet', () => {
     let payload = {
-        "id": 11,
-        "name": "TestDog2",
-        "category": {
-          "id": 1,
-          "name": "Dogs"
-        },
-        "status": "available"
+        "id": 10,
+        "username": "theUser",
+        "firstName": "John",
+        "lastName": "James",
+        "email": "john@email.com",
+        "password": "12345",
+        "phone": "12345",
+        "userStatus": 1
     }
 
-    it('POST a Pet', () => {
-        var currentUrl = endpointManager.getSimpleUrl(endpointResources.PET)
+    it('POST an user', () => {
+        let currentUrl = endpointManager.getSimpleUrl(endpointResources.USER)
         cy.request({ 
             method : 'POST',
             url : currentUrl,
             body : payload
         }).then((response) => {
             expect(response.status).to.eq(200)
-            expect(response.body.id).to.eq(payload.id)
             expect(response.body).to.deep.include(payload)
         })
     })
 
-    it('GET Pet by ID', () => {
-        var currentURL = endpointManager.getUrlById(endpointResources.PET, payload.id)
+    it('GET an user by username', () => {
+        let currentUrl = endpointManager.getUrlById(endpointResources.USER, payload.username)
         cy.request({ 
             method : 'GET',
-            url : currentURL
+            url : currentUrl
         }).then((response) => {
             expect(response.status).to.eq(200)
-            expect(response.body.name).to.eq(payload.name)
             expect(response.body).to.deep.include(payload)
         })
     })
 
-    it('PUT a Pet', () => {
-        let currentUrl = endpointManager.getSimpleUrl(endpointResources.PET)
-        payload.name += 'Updated'
+    it('PUT an user by username', () => {
+        let currentUrl = endpointManager.getUrlById(endpointResources.USER, payload.username)
+        payload.firstName += 'Updated'
+        payload.lastName += 'Updated'
         cy.request({ 
             method : 'PUT',
             url : currentUrl,
             body : payload
         }).then((response) => {
             expect(response.status).to.eq(200)
-            expect(response.body.name).to.eq(payload.name)
             expect(response.body).to.deep.include(payload)
         })
     })
 
-    it('Delete a pet by ID', () => {
-        let currentURL = endpointManager.getUrlById(endpointResources.PET, payload.id)
+    it('DELETE an user by username', () => {
+        let currentUrl = endpointManager.getUrlById(endpointResources.USER, payload.username)
         cy.request({ 
             method : 'DELETE',
-            url : currentURL
+            url : currentUrl
         }).then((response) => {
             expect(response.status).to.eq(200)
         })

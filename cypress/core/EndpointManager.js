@@ -1,11 +1,13 @@
-export default class EndpointManager {
+class EndpointManager {
 
     getUrlById(endpoint, id){
-        return Cypress.env('BASE_URL') + endpoint + '/' + id
+        return Cypress.env('BASE_URL') + endpoint  + id
     }
 
-    postUrl(endpoint){
+    getSimpleUrl(endpoint){
         return Cypress.env('BASE_URL') + endpoint
     }
 
 }
+
+module.exports = new EndpointManager()
