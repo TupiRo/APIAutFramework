@@ -1,16 +1,10 @@
-import * as endpointResources from '../support/endpoints'
-import endpointManager from '../core/EndpointManager'
+import * as endpointResources from '../../support/endpoints'
+import endpointManager from '../../core/EndpointManager'
+import payloadManager from '../../core/PayloadManager'
 
 describe('PET: CRUD TCs for Pet objet', () => {
-    let payload = {
-        "id": 11,
-        "name": "TestDog2",
-        "category": {
-          "id": 1,
-          "name": "Dogs"
-        },
-        "status": "available"
-    }
+    // Getting pet payload
+    let payload = payloadManager.getPetPayload()
 
     it('POST a Pet', () => {
         var currentUrl = endpointManager.getSimpleUrl(endpointResources.PET)

@@ -1,17 +1,10 @@
-import * as endpointResources from '../support/endpoints'
-import endpointManager from '../core/EndpointManager'
+import * as endpointResources from '../../support/endpoints'
+import endpointManager from '../../core/EndpointManager'
+import payloadManager from '../../core/PayloadManager'
 
 describe('USER: CRUD TCs for user objet', () => {
-    let payload = {
-        "id": 10,
-        "username": "theUser",
-        "firstName": "John",
-        "lastName": "James",
-        "email": "john@email.com",
-        "password": "12345",
-        "phone": "12345",
-        "userStatus": 1
-    }
+    // Getting user payload
+    let payload = payloadManager.getUserPayload()
 
     it('POST an user', () => {
         let currentUrl = endpointManager.getSimpleUrl(endpointResources.USER)

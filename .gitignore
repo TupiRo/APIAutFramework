@@ -4,6 +4,7 @@ node_modules
 cypress/screenshots
 cypress/videos
 cypress/logs
+cypress/reports/
 cypress/fixtures/profile.json
 cypress/fixtures/users.json
 .history

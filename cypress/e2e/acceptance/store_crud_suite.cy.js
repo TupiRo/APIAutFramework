@@ -1,15 +1,10 @@
-import * as endpointResources from '../support/endpoints'
-import endpointManager from '../core/EndpointManager'
+import * as endpointResources from '../../support/endpoints'
+import endpointManager from '../../core/EndpointManager'
+import payloadManager from '../../core/PayloadManager'
 
 describe('STORE: CRUD TCs for store objet', () => {
-    let payload = {
-        "id": 10,
-        "petId": 198772,
-        "quantity": 7,
-        "shipDate": "2024-05-31T04:47:01.445Z",
-        "status": "approved",
-        "complete": true
-    }
+    // Getting order payload
+    let payload = payloadManager.getOrderPayload()
 
     it('GET inventory', () => {
         let currentUrl = endpointManager.getSimpleUrl(endpointResources.INVENTORY)
